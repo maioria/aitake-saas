@@ -1,0 +1,23 @@
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+!*/build/*.java
+!*/build/*.html
+!*/build/*.xml
+
+######################################################################
+# Others
+*.log
+*.xml.versionsBackup
+*.swp
+
+/saas-admin-ui/node_modules/
+/saas-admin-ui/dist-pro/
+/saas-admin-ui/build/
+
+/saas-server/**/target/
+/saas-server/**/.flattened-pom.xml
+/saas-server/yudao-server/src/main/resources/application-prod.yaml
