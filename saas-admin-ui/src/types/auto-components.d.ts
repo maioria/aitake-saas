@@ -7,15 +7,8 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    '.eslintignore': typeof import('./../../.eslintignore')['default']
-    '.eslintrc': typeof import('./../../.eslintrc.js')['default']
-    '.eslintrcAutoImport': typeof import('./../../.eslintrc-auto-import.json')['default']
-    '.prettierignore': typeof import('./../../.prettierignore')['default']
-    '.stylelintignore': typeof import('./../../.stylelintignore')['default']
     AppLinkInput: typeof import('./../components/AppLinkInput/index.vue')['default']
     AppLinkSelectDialog: typeof import('./../components/AppLinkInput/AppLinkSelectDialog.vue')['default']
-    'AutoComponents.d': typeof import('./auto-components.d.ts')['default']
-    'AutoImports.d': typeof import('./auto-imports.d.ts')['default']
     Backtop: typeof import('./../components/Backtop/src/Backtop.vue')['default']
     CardTitle: typeof import('./../components/Card/src/CardTitle.vue')['default']
     ColorInput: typeof import('./../components/ColorInput/index.vue')['default']

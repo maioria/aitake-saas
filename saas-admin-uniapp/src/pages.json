@@ -1,0 +1,85 @@
+{
+  "pages": [
+    {
+      "path": "pages/login/index",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/inventory/index",
+      "style": {
+        "navigationStyle": "custom",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/inventory/editSpu/index",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/inventory/editSku/index",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/inventory/createInventory/index",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/inventory/createInventory/selector",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/inventory/handleStock/index",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/inventory/record/index",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  }
+  // ,
+  // "tabBar": {
+  //   "color": "#000000",
+  //   "selectedColor": "#5456EB",
+  //   "borderStyle": "white",
+  //   "backgroundColor": "#ffffff",
+  //   "list": [
+  //     {
+  //       "pagePath": "pages/index/index",
+  //       "text": "首页",
+  //       "selectedIconPath": "static/img/tabbar/home_select.png",
+  //       "iconPath": "static/img/tabbar/home.png"
+  //     },
+  //     {
+  //       "pagePath": "pages/my/index",
+  //       "text": "我的",
+  //       "selectedIconPath": "static/img/tabbar/mine_select.png",
+  //       "iconPath": "static/img/tabbar/mine.png"
+  //     }
+  //   ]
+  // }
+}

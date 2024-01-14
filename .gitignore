@@ -21,3 +21,4 @@
 /saas-server/**/target/
 /saas-server/**/.flattened-pom.xml
 /saas-server/yudao-server/src/main/resources/application-prod.yaml
+/deploy.sh

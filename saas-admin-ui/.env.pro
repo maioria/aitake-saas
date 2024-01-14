@@ -4,14 +4,14 @@ NODE_ENV=production
 VITE_DEV=false
 
 # 请求路径
-VITE_BASE_URL='https://zkzg.sciotech.cn/'
+VITE_BASE_URL='https://aitake-saas-admin.sciotech.cn/'
 
 # 上传路径
-VITE_UPLOAD_URL='https://zkzg.sciotech.cn/admin-api/infra/file/upload'
+VITE_UPLOAD_URL='https://aitake-saas-admin.sciotech.cn//admin-api/infra/file/upload'
 
 # 大屏地址
 # VITE_GO_VIEW_URL='http://127.0.0.1:3000'
-VITE_GO_VIEW_URL='http://zkzg-report.sciotech.cn'
+VITE_GO_VIEW_URL='http://aitake-saas-report.sciotech.cn'
 
 # 接口前缀
 VITE_API_BASEPATH=
