@@ -25,7 +25,13 @@
 ![](https://aitake-saas-qiniu.sciotech.cn/demo/stock.jpg)
 ![](https://aitake-saas-qiniu.sciotech.cn/demo/stock-add.jpg)
 ![](https://aitake-saas-qiniu.sciotech.cn/demo/stock-outbound.jpg)
+![](https://aitake-saas-qiniu.sciotech.cn/demo/app-login.jpg)
 ![](https://aitake-saas-qiniu.sciotech.cn/demo/stock-record.jpg)
+![](https://aitake-saas-qiniu.sciotech.cn/demo/app-stock.jpg)
+![](https://aitake-saas-qiniu.sciotech.cn/demo/app-category-create.jpg)
+![](https://aitake-saas-qiniu.sciotech.cn/demo/app-category-execute.jpg)
+![](https://aitake-saas-qiniu.sciotech.cn/demo/app-spec-execute.jpg)
+![](https://aitake-saas-qiniu.sciotech.cn/demo/app-spec-stock-create.jpg)
 
 ## 本地启动
 ```bash
