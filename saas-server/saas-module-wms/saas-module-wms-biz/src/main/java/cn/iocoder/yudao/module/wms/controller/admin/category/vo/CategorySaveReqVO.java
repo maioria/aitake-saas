@@ -37,12 +37,10 @@ public class CategorySaveReqVO {
     @Schema(description = "介绍")
     private String description;
 
-    @Schema(description = "状态", requiredMode = Schema.RequiredMode.REQUIRED)
-    @NotEmpty(message = "状态不能为空")
+    @Schema(description = "状态")
     private String status;
 
-    @Schema(description = "排序", requiredMode = Schema.RequiredMode.REQUIRED)
-    @NotNull(message = "排序不能为空")
+    @Schema(description = "排序")
     private Integer sequence;
 
     @Schema(description = "规格列表")

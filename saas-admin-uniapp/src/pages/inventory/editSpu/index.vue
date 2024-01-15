@@ -34,6 +34,23 @@
                 </view>
                 <view class="form-item">
                     <view class="form-item-label">
+                        <text>单位（必填）</text>
+                    </view>
+                    <view class="form-item-input-box">
+                        <picker @change="bindUnitPickerChange" :value="unitIndex" :range="unitLabelDict">
+                            <view class="uni-input">
+                                <text v-if="unitIndex != null">
+                                    {{ unitLabelDict[unitIndex] }}
+                                </text>
+                                <text v-else class="picker-default-label">
+                                    请选择
+                                </text>
+                            </view>
+                        </picker>
+                    </view>
+                </view>
+                <view class="form-item">
+                    <view class="form-item-label">
                         <text>类目简介</text>
                     </view>
                     <view class="form-item-input-box">
@@ -65,11 +82,16 @@ const typeDict = ref([]);
 const typeLabelDict = ref([]);
 const typeValueDict = ref([]);
 const typeIndex = ref(null);
+const unitDict = ref([]);
+const unitLabelDict = ref([]);
+const unitValueDict = ref([]);
+const unitIndex = ref(null);
 const loading = ref(false);
 const formData = ref({
     id: null,
     name: "",
     type: "",
+    unit: "",
     introduction: ""
 });
 onLoad((option) => {
@@ -80,38 +102,57 @@ onLoad((option) => {
         uni.showLoading({
             title: "加载中"
         });
-        getDictData({ type: 'zkzg_product_type_dict' }).then((res) => {
-            typeDict.value = res.data;
-            typeDict.value.forEach((item) => {
-                typeLabelDict.value.push(item.label);
-                typeValueDict.value.push(item.value);
+        getDictData({ type: 'wms_unit' }).then((res) => {
+            unitDict.value = res.data;
+            unitDict.value.forEach((item) => {
+                unitLabelDict.value.push(item.label);
+                unitValueDict.value.push(item.value);
             });
-            // 加载类目数据
-            getCategoryDetail({ id: option.id }).then((res) => {
-                uni.hideLoading();
-                formData.value = res.data;
-                typeIndex.value = typeValueDict.value.indexOf(formData.value.type);
-                if (typeIndex.value === -1) {
-                    typeIndex.value = null;
-                }
+            getDictData({ type: 'wms_category_type' }).then((res) => {
+                typeDict.value = res.data;
+                typeDict.value.forEach((item) => {
+                    typeLabelDict.value.push(item.label);
+                    typeValueDict.value.push(item.value);
+                });
+                // 加载类目数据
+                getCategoryDetail({ id: option.id }).then((res) => {
+                    uni.hideLoading();
+                    formData.value = res.data;
+                    typeIndex.value = typeValueDict.value.indexOf(formData.value.type);
+                    unitIndex.value = unitValueDict.value.indexOf(formData.value.unit);
+                    if (typeIndex.value === -1) {
+                        typeIndex.value = null;
+                    }
+                    if (unitIndex.value === -1) {
+                        unitIndex.value = null;
+                    }
+                });
             });
         });
     } else {
         title.value = "新建类目";
-        getDictData({ type: 'zkzg_product_type_dict' }).then((res) => {
+        getDictData({ type: 'wms_unit' }).then((res) => {
+            unitDict.value = res.data;
+            unitDict.value.forEach((item) => {
+                unitLabelDict.value.push(item.label);
+                unitValueDict.value.push(item.value);
+            });
+        });
+        getDictData({ type: 'wms_category_type' }).then((res) => {
             typeDict.value = res.data;
             typeDict.value.forEach((item) => {
                 typeLabelDict.value.push(item.label);
                 typeValueDict.value.push(item.value);
             });
-
-            // 默认选中第一个
-            typeIndex.value = 0;
         });
     }
 });
 const bindTypePickerChange = (e) => {
     typeIndex.value = e.detail.value
+};
+const bindUnitPickerChange = (e) => {
+    unitIndex.value = e.detail.value
+    console.log(unitIndex.value)
 };
 const handleSubmit = () => {
     if (loading.value) {
@@ -124,15 +165,23 @@ const handleSubmit = () => {
         });
         return;
     }
-    if (!typeIndex.value) {
+    if (typeIndex.value === "" || typeIndex.value === null) {
         uni.showToast({
             title: "请选择类型！",
             icon: "none"
         });
         return;
     }
+    if (unitIndex.value === "" || unitIndex.value === null) {
+        uni.showToast({
+            title: "请选择单位！",
+            icon: "none"
+        });
+        return;
+    }
     loading.value = true;
     formData.value.type = typeDict.value[typeIndex.value].value;
+    formData.value.unit = unitDict.value[unitIndex.value].value;
     if (formData.value.id) {
         updateCategory(formData.value).then((res) => {
             uni.showToast({

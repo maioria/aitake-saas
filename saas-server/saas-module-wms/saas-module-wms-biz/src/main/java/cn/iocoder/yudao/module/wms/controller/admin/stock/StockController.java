@@ -8,16 +8,14 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Operation;
 
-import javax.validation.constraints.*;
 import javax.validation.*;
 import javax.servlet.http.*;
 import java.util.*;
 import java.io.IOException;
 
-import cn.iocoder.yudao.framework.common.pojo.PageParam;
 import cn.iocoder.yudao.framework.common.pojo.PageResult;
 import cn.iocoder.yudao.framework.common.pojo.CommonResult;
-import cn.iocoder.yudao.framework.common.util.object.BeanUtils;
+
 import static cn.iocoder.yudao.framework.common.pojo.CommonResult.success;
 
 import cn.iocoder.yudao.framework.excel.core.util.ExcelUtils;
@@ -29,7 +27,11 @@ import static cn.iocoder.yudao.framework.web.core.util.WebFrameworkUtils.getLogi
 import cn.iocoder.yudao.module.system.api.dict.DictDataApi;
 import cn.iocoder.yudao.module.system.api.dict.dto.DictDataRespDTO;
 import cn.iocoder.yudao.module.wms.controller.admin.stock.vo.*;
-import cn.iocoder.yudao.module.wms.dal.dataobject.stock.StockDO;
+import cn.iocoder.yudao.module.wms.controller.admin.stock.vo.app.AppSpecRespVO;
+import cn.iocoder.yudao.module.wms.controller.admin.stock.vo.app.AppSpecStockListReqVO;
+import cn.iocoder.yudao.module.wms.controller.admin.stock.vo.app.AppSpecStockRespVO;
+import cn.iocoder.yudao.module.wms.controller.admin.stock.vo.app.AppStockPageReqVO;
+import cn.iocoder.yudao.module.wms.controller.admin.stock.vo.app.AppStockRespVO;
 import cn.iocoder.yudao.module.wms.service.stock.StockService;
 
 @Tag(name = "管理后台 - 库存")
@@ -130,5 +132,24 @@ public class StockController {
         updateReqVO.setOperator(getLoginUserId().toString());
         stockService.updateColumn(updateReqVO);
         return success(true);
+    }
+
+//    手机端额外补充
+
+    /**
+     * 分页获取产品与规格及在仓库中的数量信息
+     */
+    @GetMapping("/app/stock-list")
+    public CommonResult<PageResult<AppStockRespVO>> getSpuPage(AppStockPageReqVO reqVO) {
+        // 只查询已经入库的
+        return CommonResult.success(stockService.getAppStockList(reqVO));
+    }
+
+    /**
+     * 根据库存规格来获取库存数量明细
+     */
+    @GetMapping("/app/spec-stock-list")
+    public CommonResult<List<AppSpecStockRespVO>> getAppSpecStockList(AppSpecStockListReqVO reqVO) {
+        return CommonResult.success(stockService.getAppSpecStockList(reqVO));
     }
 }

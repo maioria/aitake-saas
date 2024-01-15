@@ -4,7 +4,7 @@
       <view class="title-box">
         <view class="title">Hello</view>
         <view class="sub-title">
-          欢迎使用正锟生产管理系统
+          欢迎使用爱塔可管理系统
         </view>
       </view>
       <view class="menu-box">

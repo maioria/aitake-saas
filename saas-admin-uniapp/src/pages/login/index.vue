@@ -1,26 +1,28 @@
 <template>
 	<view class="container">
+		<view class="content">
+			<text class="title">
+				{{ title }}
+			</text>
 
-		<text class="title">
-			{{ title }}
-		</text>
-
-		<view class="form-container">
-			<view class="form-item">
-				<image class="input-prefix-icon" src="/static/img/icons/icon-phone.png" />
-				<input class="form-item-input" name="tenantName" placeholder="请输入租户名称" v-model="form.tenantName" />
-			</view>
-			<view class="form-item">
-				<image class="input-prefix-icon" src="/static/img/icons/icon-phone.png" />
-				<input class="form-item-input" name="username" placeholder="请输入手机号" v-model="form.username" />
-			</view>
-			<view class="form-item">
-				<image class="input-prefix-icon" src="/static/img/icons/icon-password.png" />
-				<input class="form-item-input" v-model="form.password" type="password" placeholder="请输入密码" maxlength="16" />
-			</view>
-			<view @click="handleLogin" class="form-item-btn-box">
-				<view class="form-item-btn">
-					登录
+			<view class="form-container">
+				<view class="form-item">
+					<image class="input-prefix-icon" src="/static/img/icons/icon-phone.png" />
+					<input class="form-item-input" name="tenantName" placeholder="请输入租户名称" v-model="form.tenantName" />
+				</view>
+				<view class="form-item">
+					<image class="input-prefix-icon" src="/static/img/icons/icon-phone.png" />
+					<input class="form-item-input" name="username" placeholder="请输入手机号" v-model="form.username" />
+				</view>
+				<view class="form-item">
+					<image class="input-prefix-icon" src="/static/img/icons/icon-password.png" />
+					<input class="form-item-input" v-model="form.password" type="password" placeholder="请输入密码"
+						maxlength="16" />
+				</view>
+				<view @click="handleLogin" class="form-item-btn-box">
+					<view class="form-item-btn">
+						登录
+					</view>
 				</view>
 			</view>
 		</view>
@@ -35,7 +37,7 @@ import { setToken } from '@/utils/auth';
 const title = ref('欢迎使用爱塔可仓库管理系统');
 const pageTitle = ref('登录');
 const form = ref({
-	tenantName: '芋道源码',
+	tenantName: '爱塔可',
 	username: 'admin',
 	password: 'admin123',
 });
@@ -107,11 +109,15 @@ const handleLogin = () => {
 <style scoped lang="less">
 .container {
 	background: linear-gradient(180deg, #BCD7FF 0%, rgba(255, 255, 255, 0.5) 100%);
-	padding: 300rpx 55rpx 0 55rpx;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
 	align-items: center;
+	height: 100vh;
+
+	.content {
+		padding: 200rpx 55rpx 0 55rpx;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
 
 	.logo {
 		width: 238rpx;
@@ -132,7 +138,6 @@ const handleLogin = () => {
 		text-align: center;
 
 		.form-item {
-			width: 640rpx;
 			height: 100rpx;
 			background: #EEF5FF;
 			border-radius: 58rpx;

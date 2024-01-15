@@ -10,6 +10,11 @@ import javax.validation.*;
 import cn.iocoder.yudao.framework.common.pojo.CommonResult;
 import cn.iocoder.yudao.framework.operatelog.core.annotations.OperateLog;
 import cn.iocoder.yudao.module.wms.controller.admin.stock.vo.*;
+import cn.iocoder.yudao.module.wms.controller.admin.stock.vo.app.AppSpecRespVO;
+import cn.iocoder.yudao.module.wms.controller.admin.stock.vo.app.AppSpecStockListReqVO;
+import cn.iocoder.yudao.module.wms.controller.admin.stock.vo.app.AppSpecStockRespVO;
+import cn.iocoder.yudao.module.wms.controller.admin.stock.vo.app.AppStockPageReqVO;
+import cn.iocoder.yudao.module.wms.controller.admin.stock.vo.app.AppStockRespVO;
 import cn.iocoder.yudao.module.wms.dal.dataobject.stock.StockDO;
 import cn.iocoder.yudao.framework.common.pojo.PageResult;
 import cn.iocoder.yudao.framework.common.pojo.PageParam;
@@ -62,4 +67,8 @@ public interface StockService {
     Integer createAndStock(CreateAndStockReqVO createReqVO);
 
     void updateColumn(UpdateColumnVO updateReqVO);
+
+    PageResult<AppStockRespVO> getAppStockList(AppStockPageReqVO reqVO);
+
+    List<AppSpecStockRespVO> getAppSpecStockList(AppSpecStockListReqVO reqVO);
 }

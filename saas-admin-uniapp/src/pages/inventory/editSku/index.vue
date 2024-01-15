@@ -109,7 +109,7 @@ onLoad((option) => {
         uni.showLoading({
             title: "加载中"
         });
-        getDictData({ type: 'zkzg_sku_unit' }).then((res) => {
+        getDictData({ type: 'wms_unit' }).then((res) => {
             typeDict.value = res.data;
             typeDict.value.forEach((item) => {
                 typeLabelDict.value.push(item.label);
@@ -132,7 +132,7 @@ onLoad((option) => {
     } else {
         pageTitle.value = "新建规格";
         formData.value.spuId = option.categoryId;
-        getDictData({ type: 'zkzg_sku_unit' }).then((res) => {
+        getDictData({ type: 'wms_unit' }).then((res) => {
             typeDict.value = res.data;
             typeDict.value.forEach((item) => {
                 typeLabelDict.value.push(item.label);

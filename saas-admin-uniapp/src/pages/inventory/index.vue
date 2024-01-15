@@ -6,7 +6,7 @@
             </template>
         </CommonHeader>
         <view class="content">
-            <HeaderSearch :inputChange="handleInputSearch" inputPlaceholder="搜索产品名称" />
+            <HeaderSearch :inputChange="handleInputSearch" inputPlaceholder="搜索类目名称" />
             <scroll-view class="spu-list-box" :scroll-y="true" @scrolltolower="handleScrollToLower">
                 <view class="scroll-spu-list-box">
                     <view class="spu-box" v-for="product in spuList">
@@ -19,10 +19,10 @@
                             </view>
                         </view>
 
-                        <template v-for="sku in product.skus">
+                        <template v-for="sku in product.specList">
                             <view class="sku-box" @click="handleShowStockList(sku)">
                                 <view class="icon-box">
-                                    <image v-if="sku.isInStock" class="collapse-icon"
+                                    <image class="collapse-icon"
                                         :class="{ collapse: !sku.stockListShow }" src="/static/img/icons/icon-collapse.png">
                                     </image>
                                 </view>
@@ -30,9 +30,8 @@
                                     <image class="sku-img" :src="sku.picUrl || '/static/img/img/inventory-default-pic.png'" lazy-load @click.stop="viewImage(sku.picUrl)">
                                     </image>
                                     <view class="sku-title">{{ sku.name }}</view>
-                                    <view v-if="sku.isInStock" class="sku-count">{{ sku.stock }} {{ sku.unitName }}</view>
-                                    <view v-else class="sku-count">
-                                        无库存
+                                    <view class="sku-count">
+                                        {{ sku.stock }} {{ sku.unitName }}
                                     </view>
                                     <view @click.stop="handleSkuMenu(product, sku)" class="more-menu-btn-box">
                                         <image class="more-menu-btn-icon" src="/static/img/icons/icon-more-menu.png">
@@ -44,9 +43,9 @@
                                 <LoadingRound v-if="sku.stockListLoading" />
                                 <view class="sku-stock-item" v-for="(stock, index) in sku.stockList">
                                     <view class="sku-stock-item-storage">
-                                        <text class="value">{{ stock.warehouseName }} - {{ stock.warehouseShelveName }}
+                                        <text class="value">{{ stock.warehouseName }} - {{ stock.shelveName }}
                                             -
-                                            {{ stock.warehouseStorage }}</text>
+                                            {{ stock.storage }}</text>
                                         <text class="value" style="margin-left: 60rpx;">
                                             {{ stock.stock }} {{ sku.unitName }}
                                         </text>
@@ -163,7 +162,7 @@ const initData = () => {
         spuTotal.value = data.total;
         // 补充默认的库存列表
         data.list.forEach((item) => {
-            item.skus.forEach((sku) => {
+            item.specList.forEach((sku) => {
                 sku.stockList = [];
                 sku.stockListLoading = false;
                 sku.stockListShow = false;
@@ -198,18 +197,11 @@ const handleInputSearch = (value: string) => {
  * 加载sku的库存明细
  */
 const handleShowStockList = (sku) => {
-    if (!sku.isInStock) {
-        uni.showToast({
-            title: "该规格未入库，无法查看库存明细",
-            icon: "none"
-        });
-        return;
-    }
     sku.stockListShow = !sku.stockListShow;
     if (sku.stockListShow && sku.stockList.length === 0) {
         sku.stockListLoading = true;
         getSkuStockList({
-            skuId: sku.id
+            specId: sku.id
         }).then((res) => {
             sku.stockListLoading = false;
             sku.stockList = res.data;

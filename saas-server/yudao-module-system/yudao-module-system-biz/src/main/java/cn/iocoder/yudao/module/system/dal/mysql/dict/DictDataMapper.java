@@ -45,5 +45,4 @@ public interface DictDataMapper extends BaseMapperX<DictDataDO> {
                 .eqIfPresent(DictDataDO::getStatus, status)
                 .eqIfPresent(DictDataDO::getDictType, dictType));
     }
-
 }

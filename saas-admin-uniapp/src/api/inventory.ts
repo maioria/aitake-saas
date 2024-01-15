@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 获取库存下产品信息
 export function getInventoryList(params:any) {
 	return request({
-		url: '/system/auth/inventory/spu-list',
+		url: '/wms/stock/app/stock-list',
 		method: 'GET',
         params: params,
 		showLoading: true
@@ -14,7 +14,7 @@ export function getInventoryList(params:any) {
  */
 export function getSkuStockList(params:any) {
 	return request({
-		url: '/system/auth/inventory/sku-stock-list',
+		url: '/wms/stock/app/spec-stock-list',
 		method: 'GET',
 		params: params
 	})

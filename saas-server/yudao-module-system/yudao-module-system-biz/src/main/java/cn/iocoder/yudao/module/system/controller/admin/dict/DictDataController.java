@@ -11,6 +11,7 @@ import cn.iocoder.yudao.module.system.controller.admin.dict.vo.data.DictDataPage
 import cn.iocoder.yudao.module.system.controller.admin.dict.vo.data.DictDataRespVO;
 import cn.iocoder.yudao.module.system.controller.admin.dict.vo.data.DictDataSaveReqVO;
 import cn.iocoder.yudao.module.system.controller.admin.dict.vo.data.DictDataSimpleRespVO;
+import cn.iocoder.yudao.module.system.controller.app.dict.vo.AppDictDataRespVO;
 import cn.iocoder.yudao.module.system.dal.dataobject.dict.DictDataDO;
 import cn.iocoder.yudao.module.system.service.dict.DictDataService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -101,4 +102,12 @@ public class DictDataController {
                 BeanUtils.toBean(list, DictDataRespVO.class));
     }
 
+    @GetMapping("/type")
+    @Operation(summary = "根据字典类型查询字典数据信息")
+    @Parameter(name = "type", description = "字典类型", required = true, example = "common_status")
+    public CommonResult<List<AppDictDataRespVO>> getDictDataListByType(@RequestParam("type") String type) {
+        List<DictDataDO> list = dictDataService.getDictDataList(
+            CommonStatusEnum.ENABLE.getStatus(), type);
+        return success(BeanUtils.toBean(list, AppDictDataRespVO.class));
+    }
 }

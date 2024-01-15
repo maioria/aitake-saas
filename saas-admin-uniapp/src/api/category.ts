@@ -1,20 +1,11 @@
 import request from '@/utils/request'
 
-// 获取库存下产品信息
-export function getCategoryList(params:any) {
-	return request({
-		url: '/system/auth/category/spu-list',
-		method: 'GET',
-        params: params
-	})
-}
-
 /**
  * 获取类目详情
  */
 export function getCategoryDetail(params:any) {
 	return request({
-		url: '/zkzg/product-spu/get',
+		url: '/wms/category/get',
 		method: 'GET',
 		params: params,
 		showLoading: true
@@ -26,7 +17,7 @@ export function getCategoryDetail(params:any) {
  */
 export function createCategory(data:any) {
 	return request({
-		url: '/zkzg/product-spu/create',
+		url: '/wms/category/create',
 		method: 'POST',
 		data: data,
 		showLoading: true
@@ -38,7 +29,7 @@ export function createCategory(data:any) {
  */
 export function updateCategory(data:any) {
 	return request({
-		url: '/zkzg/product-spu/update',
+		url: '/wms/category/update',
 		method: 'PUT',
 		data: data,
 		showLoading: true
@@ -50,7 +41,7 @@ export function updateCategory(data:any) {
  */
 export function deleteCategory(data:any) {
 	return request({
-		url: '/zkzg/product-spu/delete',
+		url: '/wms/category/delete',
 		method: 'DELETE',
 		params: data,
 		showLoading: true
@@ -62,7 +53,7 @@ export function deleteCategory(data:any) {
  */
 export function createSku(data:any) {
 	return request({
-		url: '/zkzg/product-spu/product-sku/create',
+		url: '/wms/category/spec/create',
 		method: 'POST',
 		data: data,
 		showLoading: true
@@ -74,7 +65,7 @@ export function createSku(data:any) {
  */
 export function updateSku(data:any) {
 	return request({
-		url: '/zkzg/product-spu/product-sku/update',
+		url: '/wms/category/spec/update',
 		method: 'PUT',
 		data: data,
 		showLoading: true
@@ -86,7 +77,7 @@ export function updateSku(data:any) {
  */
 export function getSkuDetail(params:any) {
 	return request({
-		url: '/zkzg/product-spu/product-sku/get',
+		url: '/wms/category/spec/get',
 		method: 'GET',
 		params: params,
 		showLoading: true
@@ -98,7 +89,7 @@ export function getSkuDetail(params:any) {
  */
 export function deleteSku(data:any) {
 	return request({
-		url: '/zkzg/product-spu/product-sku/delete',
+		url: '/wms/category/spec/delete',
 		method: 'DELETE',
 		params: data,
 		showLoading: true

@@ -7,6 +7,8 @@
 
 - [预览地址](https://aitake-saas-admin.sciotech.cn/)
 
+- [uniapp预览地址](https://aitake-saas-admin-app.sciotech.cn/)
+
 
 ## 后端
 - 使用java开发,springboot框架，基于ruoyi-vue-pro，数据库使用mysql，缓存使用redis，前后端分离，支持多租户
